@@ -225,8 +225,8 @@
 
 #define UBIVOLS1_DUALBOOT_512MB		"ubi create " LINUX_A_PARTITION " 1000000;" \
 					"ubi create " LINUX_B_PARTITION ";"
-#define UBIVOLS2_DUALBOOT_512MB		"ubi create " ROOTFS_A_PARTITION " dc00000;" \
-					"ubi create " ROOTFS_B_PARTITION " dc00000;" \
+#define UBIVOLS2_DUALBOOT_512MB		"ubi create " ROOTFS_A_PARTITION " 9600000;" \
+					"ubi create " ROOTFS_B_PARTITION " 9600000;" \
 					"ubi create " DATA_PARTITION ";"
 
 #define UBIVOLS1_DUALBOOT_1024MB	"ubi create " LINUX_A_PARTITION " 1000000;" \
