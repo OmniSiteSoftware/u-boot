@@ -357,6 +357,12 @@ error:
 void platform_default_environment(void)
 {
 	som_default_environment();
+
+	if (of_machine_is_compatible("omnisite,wings-revd")) {
+		env_set("wings_board", "revd");
+		env_set("fdt_file", "ccmp157-wings-revd.dtb");
+		env_set("usb_enable_gpio", "GPIOH15");
+	}
 }
 
 int board_late_init(void)

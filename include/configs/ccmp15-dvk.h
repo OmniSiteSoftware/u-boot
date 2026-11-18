@@ -231,8 +231,11 @@
 
 #define UBIVOLS1_DUALBOOT_1024MB	"ubi create " LINUX_A_PARTITION " 1000000;" \
 					"ubi create " LINUX_B_PARTITION ";"
-#define UBIVOLS2_DUALBOOT_1024MB	"ubi create " ROOTFS_A_PARTITION " 1cecc400;" \
-					"ubi create " ROOTFS_B_PARTITION " 1cecc400;" \
+/* 160 MiB per root slot; UBI rounds to LEB boundaries. Data takes the remainder.
+ * This changes new layouts only: existing volumes require an explicit migration.
+ */
+#define UBIVOLS2_DUALBOOT_1024MB	"ubi create " ROOTFS_A_PARTITION " a000000;" \
+					"ubi create " ROOTFS_B_PARTITION " a000000;" \
 					"ubi create " DATA_PARTITION ";"
 
 #define CREATE_UBIVOLS_SCRIPT		"ubi detach;" \

@@ -10,3 +10,32 @@
 #include "ccmp15-ddr-1GB.dtsi"
 /* Digi ConnectCore CCMP15 DVK */
 #include "ccmp15-dvk.dtsi"
+
+/* This product branch uses the 1 GiB module on the Wings Rev D carrier. */
+/ {
+	model = "OmniSite Wings brain Rev D (1 GiB)";
+	compatible = "omnisite,wings-revd", "digi,ccmp15-dvk",
+		     "digi,ccmp15", "digi,ccmp1";
+
+	usb_hub_3v3: regulator-usb-hub-3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "usb-hub-3v3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		vin-supply = <&v3v3>;
+		gpio = <&gpioh 15 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		regulator-boot-on;
+		regulator-always-on;
+		startup-delay-us = <20000>;
+	};
+};
+
+&gpiof {
+	usb-hub-reset {
+		gpio-hog;
+		gpios = <10 GPIO_ACTIVE_HIGH>;
+		output-high;
+		line-name = "usb-hub-reset-n";
+	};
+};
